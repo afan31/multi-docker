@@ -22,3 +22,16 @@ after_success:
   - docker push afankhan/multi-nginx
   - docker push afankhan/multi-server
   - docker push afankhan/multi-worker
+
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: us-east-1
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-us-east-1-661815601808
+  bucketpath: docker-multi
+  on:
+    branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
